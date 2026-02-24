@@ -115,6 +115,4 @@ The chatbot knows about:
 User Query → FastAPI → FalkorDB (get context) → Ollama → Response
 ```
 
-## License
-
-MIT
+## How It Works
