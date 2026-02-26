@@ -402,6 +402,138 @@ def setup_knowledge_graph():
             "food",
             "Chicken nuggets are bite-sized pieces of chicken coated in breading.",
         ),
+        # Small talk / Chitchat
+        (
+            "whats_up",
+            "chitchat",
+            "What's up is a casual greeting asking how someone is doing, similar to 'what's going on?'",
+        ),
+        (
+            "how_was_your_day",
+            "chitchat",
+            "How was your day is a friendly question asking about someone's daily experiences.",
+        ),
+        (
+            "whats_good",
+            "chitchat",
+            "What's good is Gen Z slang for asking what's happening or how someone is doing.",
+        ),
+        (
+            "you_good",
+            "chitchat",
+            "You good? is a casual way of asking if someone is okay or doing well.",
+        ),
+        (
+            "hows_life",
+            "chitchat",
+            "How's life is a casual question about someone's general wellbeing and life situation.",
+        ),
+        (
+            "what_you_been_up_to",
+            "chitchat",
+            "What have you been up to is asking what someone has been doing lately.",
+        ),
+        (
+            "lowkey",
+            "gen_z",
+            "Lowkey means secretly, quietly, or to a moderate degree. Like 'I lowkey love that song'.",
+        ),
+        (
+            "highkey",
+            "gen_z",
+            "Highkey is the opposite of lowkey, meaning obviously or very much so.",
+        ),
+        (
+            "fr_fr",
+            "gen_z",
+            "FR FR means 'for real for real', used to strongly emphasize something is true.",
+        ),
+        (
+            "ngl",
+            "gen_z",
+            "NGL means 'not gonna lie', used before an honest or vulnerable statement.",
+        ),
+        (
+            "mid",
+            "gen_z",
+            "Mid means average or mediocre, not good but not terrible either.",
+        ),
+        ("bussin", "gen_z", "Bussin means really good, usually used to describe food."),
+        (
+            "hits_different",
+            "gen_z",
+            "Hits different means something feels uniquely special or better in a particular context.",
+        ),
+        (
+            "understood_the_assignment",
+            "gen_z",
+            "Understood the assignment means someone did exactly what was needed and did it well.",
+        ),
+        (
+            "main_character",
+            "gen_z",
+            "Main character energy means acting like the protagonist of your own life story.",
+        ),
+        (
+            "rent_free",
+            "gen_z",
+            "Living rent free means something or someone is stuck in your head without you wanting it.",
+        ),
+        (
+            "era",
+            "gen_z",
+            "Era is used to describe a phase of life, like 'I'm in my study era' or 'villain era'.",
+        ),
+        (
+            "delulu",
+            "gen_z",
+            "Delulu is short for delusional, used humorously when someone has unrealistic expectations.",
+        ),
+        (
+            "touch_grass",
+            "gen_z",
+            "Touch grass means to go outside and disconnect from the internet for a while.",
+        ),
+        (
+            "ick",
+            "gen_z",
+            "The ick is a sudden feeling of disgust or being turned off by someone.",
+        ),
+        (
+            "situationship",
+            "gen_z",
+            "A situationship is a romantic relationship that isn't officially defined or labeled.",
+        ),
+        (
+            "ghosting",
+            "gen_z",
+            "Ghosting means suddenly cutting off all communication with someone without explanation.",
+        ),
+        (
+            "caught_in_4k",
+            "gen_z",
+            "Caught in 4K means being caught doing something bad with clear undeniable evidence.",
+        ),
+        (
+            "npc",
+            "gen_z",
+            "NPC means someone acting like a Non-Playable Character, doing repetitive or mindless things.",
+        ),
+        (
+            "glow_up",
+            "gen_z",
+            "Glow up means a major positive transformation in appearance or lifestyle.",
+        ),
+        (
+            "ate",
+            "gen_z",
+            "Ate (and left no crumbs) means someone did something perfectly and impressively.",
+        ),
+        (
+            "periodt",
+            "gen_z",
+            "Periodt is an emphatic version of 'period', used to end a statement with finality.",
+        ),
     ]
 
     edges = [
@@ -472,6 +604,23 @@ def setup_knowledge_graph():
         ("boba", "cafe", "sold_at"),
         ("ramen", "cafe", "served_at"),
         ("sushi", "cafe", "served_at"),
+        # Chitchat connections
+        ("whats_up", "greeting", "is_a"),
+        ("whats_good", "greeting", "is_a"),
+        ("you_good", "greeting", "is_a"),
+        ("hows_life", "greeting", "is_a"),
+        ("how_was_your_day", "chitchat", "is_a"),
+        ("what_you_been_up_to", "chitchat", "is_a"),
+        # New gen_z connections
+        ("lowkey", "tiktok", "popular_on"),
+        ("highkey", "tiktok", "popular_on"),
+        ("delulu", "tiktok", "popular_on"),
+        ("situationship", "tiktok", "popular_on"),
+        ("npc", "gaming", "originates_from"),
+        ("glow_up", "social_media", "popular_on"),
+        ("ghosting", "situationship", "related_to"),
+        ("main_character", "tiktok", "popular_on"),
+        ("era", "tiktok", "popular_on"),
     ]
 
     try:
@@ -498,12 +647,53 @@ def setup_knowledge_graph():
         print(f"Graph might already exist: {e}")
 
 
+SMALL_TALK_PATTERNS = {
+    "hi": ["greeting", "how_are_you", "hello", "hey"],
+    "hello": ["greeting", "how_are_you", "hi", "hey"],
+    "hey": ["greeting", "how_are_you", "hi", "hello"],
+    "how are you": ["how_are_you", "you_good", "whats_up"],
+    "how's your day": ["how_was_your_day", "hows_life"],
+    "good morning": ["good_morning", "greeting"],
+    "good afternoon": ["good_afternoon", "greeting"],
+    "good evening": ["good_evening", "greeting"],
+    "good night": ["good_night", "bye"],
+    "bye": ["bye", "good_night"],
+    "thanks": ["thanks", "thank_you"],
+    "thank you": ["thanks", "thank_you"],
+    "what's up": ["whats_up", "whats_good", "you_good"],
+    "whats up": ["whats_up", "whats_good", "you_good"],
+}
+
+
 def query_knowledge_graph(query: str, max_results: int = 3) -> str:
     """Query the knowledge graph for relevant facts."""
     graph = db.select_graph(GRAPH_NAME)
     query_lower = query.lower()
-    query_words = query_lower.split()
 
+    # Check for small talk patterns first
+    for pattern, topic_ids in SMALL_TALK_PATTERNS.items():
+        if pattern in query_lower:
+            topic_search = " OR ".join([f"n.id = '{tid}'" for tid in topic_ids])
+            cypher_query = f"""
+            MATCH (n:Topic)
+            WHERE {topic_search}
+            RETURN n.id AS id, n.category AS category, n.fact AS fact
+            LIMIT {max_results}
+            """
+            try:
+                result = graph.query(cypher_query)
+                if result.result_set:
+                    facts = [row[2] for row in result.result_set if row[2]]
+                    if facts:
+                        context_parts = [f"- {fact}" for fact in facts]
+                        return "Relevant facts from knowledge base:\n" + "\n".join(
+                            context_parts
+                        )
+            except Exception as e:
+                print(f"Small talk query error: {e}")
+
+    # Fall back to keyword search
+    query_words = query_lower.split()
     search_terms = " OR ".join(
         [
             f"n.id CONTAINS '{word}' OR n.fact CONTAINS '{word}'"
@@ -555,9 +745,14 @@ async def generate(request: GenerateRequest):
     try:
         context = query_knowledge_graph(request.prompt)
 
+        # Build prompt based on whether we have context
         if context:
-            full_prompt = f"{context}\n\nUser question: {request.prompt}\nPlease provide a helpful answer based on the information above."
+            full_prompt = f"""{context}
+
+User question: {request.prompt}
+Please provide a helpful, friendly answer based on the information above."""
         else:
+            # No context found - let LLM handle it naturally
             full_prompt = request.prompt
 
         ollama_response = requests.post(
