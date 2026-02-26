@@ -24,9 +24,10 @@ A chatbot that uses a local LLM (TinyLlama) combined with a knowledge graph (Fal
 local-llm-chatbot/
 ├── server.py           # Main FastAPI server with knowledge graph
 ├── chat.py             # CLI chat interface
+├── index.html          # Web interface (open in browser)
 ├── requirements.txt    # Python dependencies
 ├── docker-compose.yml  # FalkorDB configuration
-└── README.md           # This file
+└── README.md          # This file
 ```
 
 ## Quick Start
@@ -34,7 +35,7 @@ local-llm-chatbot/
 ### Prerequisites
 
 1. **Ollama** - Download from https://ollama.com
-2. **Docker Desktop** - For FalkorDB
+2. **Docker Desktop** - For FalkorDB (optional, can use existing instance)
 
 ### Steps
 
@@ -59,14 +60,29 @@ pip install -r requirements.txt
 python -m uvicorn server:app --port 5005
 ```
 
-5. **Test the API:**
-```bash
-curl -X POST http://localhost:5005/generate \
-  -H "Content-Type: application/json" \
-  -d '{"prompt": "What is machine learning?"}'
-```
+5. **Use the chatbot:**
 
-Or open the interactive docs at `http://localhost:5005/docs`
+   **Option A - Web Interface (Recommended):**
+   - Open `index.html` in your browser (double-click the file)
+   - Or drag `index.html` into Chrome/Edge/Firefox
+   - Type your question and click Send
+
+   **Option B - Interactive Docs:**
+   - Go to http://localhost:5005/docs
+   - Click on `/generate`
+   - Click "Try it out"
+   - Enter `{"prompt": "Your question"}`
+   - Click "Execute"
+
+   **Option C - PowerShell:**
+   ```powershell
+   Invoke-RestMethod -Uri 'http://localhost:5005/generate' -Method POST -ContentType 'application/json' -Body '{"prompt": "What is machine learning?"}'
+   ```
+
+   **Option D - Command Prompt:**
+   ```bash
+   curl -X POST http://localhost:5005/generate -H "Content-Type: application/json" -d "{\"prompt\": \"What is machine learning?\"}"
+   ```
 
 ## API Endpoints
 
@@ -114,5 +130,3 @@ The chatbot knows about:
 ```
 User Query → FastAPI → FalkorDB (get context) → Ollama → Response
 ```
-
-## How It Works
