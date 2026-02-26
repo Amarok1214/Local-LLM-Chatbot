@@ -236,6 +236,172 @@ def setup_knowledge_graph():
             "science",
             "A galaxy is a massive system of stars, gas, and dust held together by gravity.",
         ),
+        # Greetings & General
+        (
+            "greeting",
+            "general",
+            "A greeting is a way to say hello or acknowledge someone, like 'Hi', 'Hello', or 'Hey there!'",
+        ),
+        (
+            "how_are_you",
+            "general",
+            "People ask 'How are you?' as a friendly way to check in on someone's wellbeing.",
+        ),
+        (
+            "good_morning",
+            "general",
+            "Good morning is a greeting used in the morning hours, usually until noon.",
+        ),
+        (
+            "good_afternoon",
+            "general",
+            "Good afternoon is a greeting used from noon until evening.",
+        ),
+        (
+            "good_evening",
+            "general",
+            "Good evening is a greeting used in the evening hours.",
+        ),
+        ("good_night", "general", "Good night is used as a farewell before sleeping."),
+        ("thanks", "general", "Thanks or thank you is an expression of gratitude."),
+        ("bye", "general", "Bye is a casual farewell, short for 'Goodbye'."),
+        # Gen Z Topics
+        (
+            "skibidi",
+            "gen_z",
+            "Skibidi is a viral internet meme and sound that became popular in 2024, used humorously in videos.",
+        ),
+        (
+            "rizz",
+            "gen_z",
+            "Rizz means charisma, especially in romantic or social situations. Short for 'charisma'.",
+        ),
+        (
+            "sigma",
+            "gen_z",
+            "Sigma is a term used online to describe a lone wolf who doesn't follow social norms, often humorously.",
+        ),
+        (
+            "gyat",
+            "gen_z",
+            "Gyat is Gen Z slang meaning 'goddamn' and is often used when expressing excitement.",
+        ),
+        (
+            "no_cap",
+            "gen_z",
+            "No cap means 'no lie' or 'for real', used to emphasize honesty.",
+        ),
+        ("bet", "gen_z", "Bet is Gen Z slang meaning 'okay', 'sure', or 'let's go'."),
+        (
+            "sheesh",
+            "gen_z",
+            "Sheesh is an expression of surprise or admiration, often said in an exaggerated way.",
+        ),
+        (
+            "slay",
+            "gen_z",
+            "Slay means to do something exceptionally well or to look amazing.",
+        ),
+        (
+            "vibe",
+            "gen_z",
+            "Vibe refers to the mood or atmosphere of a situation, or someone's energy.",
+        ),
+        ("aura", "gen_z", "Aura refers to a person's energy or magnetic presence."),
+        (
+            "stan",
+            "gen_z",
+            "Stan means to be a huge fan of someone or something, from Eminem's song 'Stan'.",
+        ),
+        (
+            "goat",
+            "gen_z",
+            "GOAT means 'Greatest Of All Time', used to describe the best in any category.",
+        ),
+        ("lit", "gen_z", "Lit means something is exciting, fun, or cool."),
+        (
+            "fire",
+            "gen_z",
+            "Fire means something is really good or cool, like 'that's fire'.",
+        ),
+        (
+            "based",
+            "gen_z",
+            "Based means being true to yourself and not caring about others' opinions.",
+        ),
+        ("w", "gen_z", "W means a win or success, the opposite of L."),
+        ("L", "gen_z", "L means a loss or failure."),
+        ("yap", "gen_z", "Yap means to talk a lot, often about unimportant things."),
+        (
+            "fanum_tax",
+            "gen_z",
+            "Fanum Tax is a meme about sharing food, where someone steals part of your meal.",
+        ),
+        (
+            "brainrot",
+            "gen_z",
+            "Brainrot is Gen Z humor for content that rots your brain from too much internet use.",
+        ),
+        # Trending
+        (
+            "tiktok",
+            "social_media",
+            "TikTok is a popular short-video app where users create and share 15-60 second videos.",
+        ),
+        (
+            "instagram",
+            "social_media",
+            "Instagram is a photo and video sharing app owned by Meta.",
+        ),
+        (
+            "youtube",
+            "social_media",
+            "YouTube is a video platform where users watch and upload videos.",
+        ),
+        (
+            "minecraft",
+            "gaming",
+            "Minecraft is a popular sandbox video game where players build with blocks.",
+        ),
+        ("fortnite", "gaming", "Fortnite is a popular battle royale video game."),
+        (
+            "roblox",
+            "gaming",
+            "Roblox is a gaming platform where users create and play games made by the community.",
+        ),
+        (
+            "genshin_impact",
+            "gaming",
+            "Genshin Impact is a popular open-world action RPG game.",
+        ),
+        # Food
+        (
+            "pizza",
+            "food",
+            "Pizza is a popular food made with dough, sauce, cheese, and toppings.",
+        ),
+        (
+            "burger",
+            "food",
+            "A burger is a sandwich with a meat patty between two buns.",
+        ),
+        ("sushi", "food", "Sushi is a Japanese dish with rice, fish, and seaweed."),
+        ("ramen", "food", "Ramen is a Japanese noodle soup dish."),
+        (
+            "boba",
+            "food",
+            "Boba or bubble tea is a sweet tea drink with tapioca pearls.",
+        ),
+        (
+            "mcdonalds",
+            "food",
+            "McDonald's is a fast food restaurant chain known for burgers and fries.",
+        ),
+        (
+            "chicken_nuggets",
+            "food",
+            "Chicken nuggets are bite-sized pieces of chicken coated in breading.",
+        ),
     ]
 
     edges = [
@@ -288,6 +454,24 @@ def setup_knowledge_graph():
         ("universe", "black_hole", "contains"),
         ("astronomy", "black_hole", "studies"),
         ("astronomy", "galaxy", "studies"),
+        # Gen Z connections
+        ("rizz", "social_media", "often_discussed_on"),
+        ("skibidi", "tiktok", "popular_on"),
+        ("stan", "tiktok", "used_on"),
+        ("gyat", "tiktok", "popular_on"),
+        ("brainrot", "tiktok", "originates_from"),
+        # Gaming connections
+        ("gaming", "minecraft", "includes"),
+        ("gaming", "fortnite", "includes"),
+        ("gaming", "roblox", "includes"),
+        ("gaming", "genshin_impact", "includes"),
+        # Food connections
+        ("pizza", "mcdonalds", "sold_at"),
+        ("burger", "mcdonalds", "sold_at"),
+        ("coffee", "cafe", "served_at"),
+        ("boba", "cafe", "sold_at"),
+        ("ramen", "cafe", "served_at"),
+        ("sushi", "cafe", "served_at"),
     ]
 
     try:
