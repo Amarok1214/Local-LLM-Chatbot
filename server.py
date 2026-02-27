@@ -19,7 +19,7 @@ OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 MODEL_NAME = os.getenv("MODEL_NAME", "tinyllama")
 
 FALKORDB_HOST = os.getenv("FALKORDB_HOST", "localhost")
-FALKORDB_PORT = int(os.getenv("FALKORDB_PORT", "6379"))
+FALKORDB_PORT = int(os.getenv("FALKORDB_PORT", "6381"))
 
 GRAPH_NAME = "chatbot_knowledge"
 
@@ -534,6 +534,290 @@ def setup_knowledge_graph():
             "gen_z",
             "Periodt is an emphatic version of 'period', used to end a statement with finality.",
         ),
+        # Trivia & General Knowledge
+        (
+            "capitals",
+            "trivia",
+            "A capital city is the city where a country's government is located. Example: Tokyo is the capital of Japan, Paris is the capital of France, Manila is the capital of the Philippines.",
+        ),
+        (
+            "philippines",
+            "trivia",
+            "The Philippines is an archipelago in Southeast Asia with Manila as its capital. It has over 7,000 islands.",
+        ),
+        (
+            "largest_country",
+            "trivia",
+            "Russia is the largest country in the world by land area, covering over 17 million square kilometers.",
+        ),
+        (
+            "smallest_country",
+            "trivia",
+            "Vatican City is the smallest country in the world, located inside Rome, Italy.",
+        ),
+        (
+            "longest_river",
+            "trivia",
+            "The Nile River in Africa is often considered the longest river in the world at about 6,650 kilometers.",
+        ),
+        (
+            "tallest_mountain",
+            "trivia",
+            "Mount Everest is the tallest mountain in the world at 8,849 meters above sea level, located in Nepal.",
+        ),
+        (
+            "human_body",
+            "trivia",
+            "The human body has 206 bones, 32 teeth, and about 37 trillion cells. The heart beats about 100,000 times a day.",
+        ),
+        (
+            "speed_of_light",
+            "trivia",
+            "The speed of light is approximately 299,792 kilometers per second. Nothing in the universe travels faster.",
+        ),
+        (
+            "water_formula",
+            "trivia",
+            "Water is made of two hydrogen atoms and one oxygen atom, chemical formula H2O. It covers 71% of Earth's surface.",
+        ),
+        (
+            "planets_count",
+            "trivia",
+            "There are 8 planets in our solar system: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+        ),
+        (
+            "dna",
+            "trivia",
+            "DNA stands for deoxyribonucleic acid and carries genetic information in living organisms. It is shaped like a double helix.",
+        ),
+        (
+            "gravity",
+            "trivia",
+            "Gravity is the force that attracts objects toward each other. Earth's gravity pulls things downward at 9.8 m/s².",
+        ),
+        (
+            "photosynthesis",
+            "trivia",
+            "Photosynthesis is the process plants use to convert sunlight, water, and CO2 into food and oxygen.",
+        ),
+        (
+            "boiling_point",
+            "trivia",
+            "Water boils at 100 degrees Celsius or 212 degrees Fahrenheit at sea level.",
+        ),
+        (
+            "freezing_point",
+            "trivia",
+            "Water freezes at 0 degrees Celsius or 32 degrees Fahrenheit.",
+        ),
+        (
+            "continents",
+            "trivia",
+            "There are 7 continents on Earth: Africa, Antarctica, Asia, Australia, Europe, North America, and South America.",
+        ),
+        (
+            "oceans",
+            "trivia",
+            "There are 5 oceans on Earth: Pacific, Atlantic, Indian, Southern, and Arctic. The Pacific is the largest.",
+        ),
+        (
+            "world_population",
+            "trivia",
+            "The world population is approximately 8 billion people as of 2024.",
+        ),
+        (
+            "light_year",
+            "trivia",
+            "A light year is the distance light travels in one year, about 9.46 trillion kilometers.",
+        ),
+        (
+            "periodic_table",
+            "trivia",
+            "The periodic table has 118 elements. Hydrogen is the lightest and most abundant element in the universe.",
+        ),
+        # Simple Math & Logic
+        (
+            "addition",
+            "math",
+            "Addition is combining numbers together. Example: 2 + 2 = 4. The result is called the sum.",
+        ),
+        (
+            "subtraction",
+            "math",
+            "Subtraction is taking one number away from another. Example: 10 - 3 = 7. The result is called the difference.",
+        ),
+        (
+            "multiplication",
+            "math",
+            "Multiplication is repeated addition. Example: 4 x 3 = 12. The result is called the product.",
+        ),
+        (
+            "division",
+            "math",
+            "Division is splitting a number into equal parts. Example: 12 / 4 = 3. The result is called the quotient.",
+        ),
+        (
+            "percentage",
+            "math",
+            "A percentage represents a fraction of 100. To find X% of a number: multiply by X then divide by 100. Example: 20% of 50 = (50 x 20) / 100 = 10.",
+        ),
+        (
+            "area",
+            "math",
+            "Area is the amount of space inside a 2D shape. Rectangle: length x width. Circle: π x radius². Triangle: 0.5 x base x height.",
+        ),
+        (
+            "perimeter",
+            "math",
+            "Perimeter is the total distance around a shape. Rectangle: 2 x (length + width). Circle circumference: 2 x π x radius.",
+        ),
+        (
+            "pythagorean_theorem",
+            "math",
+            "The Pythagorean theorem states a² + b² = c² for right triangles, where c is the hypotenuse (longest side).",
+        ),
+        (
+            "average",
+            "math",
+            "Average (mean) is the sum of all numbers divided by the count. Example: average of 2, 4, 6 = (2+4+6)/3 = 4.",
+        ),
+        (
+            "prime_numbers",
+            "math",
+            "Prime numbers are only divisible by 1 and themselves. Examples: 2, 3, 5, 7, 11, 13, 17, 19, 23.",
+        ),
+        (
+            "square_root",
+            "math",
+            "A square root is a number that when multiplied by itself gives the original number. Example: √16 = 4 because 4 x 4 = 16.",
+        ),
+        (
+            "fractions",
+            "math",
+            "A fraction represents part of a whole. Example: 1/2 means one out of two equal parts. To add fractions, make denominators equal first.",
+        ),
+        (
+            "order_of_operations",
+            "math",
+            "Order of operations (PEMDAS): Parentheses, Exponents, Multiplication/Division (left to right), Addition/Subtraction (left to right).",
+        ),
+        (
+            "negative_numbers",
+            "math",
+            "Negative numbers are less than zero. Adding a negative = subtracting. Multiplying two negatives = positive.",
+        ),
+        (
+            "exponents",
+            "math",
+            "An exponent means multiplying a number by itself. Example: 2³ = 2 x 2 x 2 = 8. Any number to the power of 0 = 1.",
+        ),
+        # Everyday Problem Solving
+        (
+            "time_zones",
+            "practical",
+            "Time zones divide the world into 24 regions. The Philippines is in UTC+8. New York is UTC-5. London is UTC+0.",
+        ),
+        (
+            "unit_conversion",
+            "practical",
+            "Unit conversion: 1 kilometer = 1000 meters. 1 mile = 1.609 km. 1 inch = 2.54 cm. 1 kg = 2.205 pounds. 1 liter = 1000 ml.",
+        ),
+        (
+            "cooking_tips",
+            "practical",
+            "Common cooking tips: preheat oven before baking. 1 cup = 240ml. 1 tablespoon = 15ml. 1 teaspoon = 5ml.",
+        ),
+        (
+            "budgeting",
+            "practical",
+            "Budgeting means tracking income and expenses. The 50/30/20 rule: 50% needs, 30% wants, 20% savings.",
+        ),
+        (
+            "password_tips",
+            "practical",
+            "A strong password uses uppercase, lowercase, numbers, and symbols and is at least 12 characters long. Never reuse passwords.",
+        ),
+        (
+            "file_sizes",
+            "practical",
+            "File sizes: 1 KB = 1024 bytes, 1 MB = 1024 KB, 1 GB = 1024 MB, 1 TB = 1024 GB.",
+        ),
+        (
+            "internet_speed",
+            "practical",
+            "Internet speed is measured in Mbps. Streaming HD video needs ~5 Mbps. 4K needs ~25 Mbps. Gaming needs ~10 Mbps.",
+        ),
+        (
+            "first_aid",
+            "practical",
+            "Basic first aid: for cuts, clean the wound and apply pressure. For burns, run cool water for 10 minutes. For choking, use the Heimlich maneuver.",
+        ),
+        (
+            "sleep_tips",
+            "practical",
+            "Adults need 7-9 hours of sleep per night. Avoid screens 1 hour before bed. Keep a consistent sleep schedule for better rest.",
+        ),
+        (
+            "study_tips",
+            "practical",
+            "Effective study tips: use the Pomodoro technique (25 min study, 5 min break). Take notes, review regularly, and teach concepts to others.",
+        ),
+        (
+            "temperature_conversion",
+            "practical",
+            "To convert Celsius to Fahrenheit: multiply by 9/5 then add 32. To convert Fahrenheit to Celsius: subtract 32 then multiply by 5/9.",
+        ),
+        (
+            "time_management",
+            "practical",
+            "Time management tips: prioritize tasks by urgency and importance. Break big tasks into smaller steps. Avoid multitasking.",
+        ),
+        (
+            "money_tips",
+            "practical",
+            "Money tips: track your spending, avoid impulse buys, build an emergency fund with 3-6 months of expenses, and invest early.",
+        ),
+        # Logic & Reasoning
+        (
+            "logical_thinking",
+            "logic",
+            "Logical thinking involves analyzing facts and drawing conclusions based on evidence, not emotions or assumptions.",
+        ),
+        (
+            "cause_and_effect",
+            "logic",
+            "Cause and effect means one event causes another. Example: if it rains (cause), the ground gets wet (effect).",
+        ),
+        (
+            "if_then",
+            "logic",
+            "If-then logic: If a condition is true, then a result follows. Example: If 2+2=4, then it is a true equation.",
+        ),
+        (
+            "deduction",
+            "logic",
+            "Deduction is drawing specific conclusions from general rules. Example: All humans are mortal, Socrates is human, so Socrates is mortal.",
+        ),
+        (
+            "problem_solving_steps",
+            "logic",
+            "Problem solving steps: 1) Identify the problem clearly, 2) Gather relevant information, 3) Think of possible solutions, 4) Pick the best one, 5) Evaluate results.",
+        ),
+        (
+            "critical_thinking",
+            "logic",
+            "Critical thinking means questioning assumptions, evaluating evidence, and considering multiple perspectives before reaching a conclusion.",
+        ),
+        (
+            "analogy",
+            "logic",
+            "An analogy compares two things to explain a concept. Example: A heart is to the body as a pump is to a water system.",
+        ),
+        (
+            "pattern_recognition",
+            "logic",
+            "Pattern recognition is identifying repeating sequences. Example: 2, 4, 6, 8 — the pattern is adding 2 each time.",
+        ),
     ]
 
     edges = [
@@ -621,6 +905,55 @@ def setup_knowledge_graph():
         ("ghosting", "situationship", "related_to"),
         ("main_character", "tiktok", "popular_on"),
         ("era", "tiktok", "popular_on"),
+        # Trivia connections
+        ("gravity", "physics", "is_part_of"),
+        ("photosynthesis", "biology", "is_part_of"),
+        ("dna", "biology", "is_part_of"),
+        ("water_formula", "chemistry", "is_part_of"),
+        ("speed_of_light", "physics", "is_part_of"),
+        ("tallest_mountain", "earth", "located_on"),
+        ("longest_river", "earth", "located_on"),
+        ("planets_count", "solar_system", "describes"),
+        ("boiling_point", "chemistry", "related_to"),
+        ("freezing_point", "chemistry", "related_to"),
+        ("philippines", "capitals", "has_capital"),
+        ("continents", "earth", "part_of"),
+        ("oceans", "earth", "part_of"),
+        ("periodic_table", "chemistry", "is_part_of"),
+        ("light_year", "astronomy", "used_in"),
+        # Math connections
+        ("addition", "mathematics", "is_part_of"),
+        ("subtraction", "mathematics", "is_part_of"),
+        ("multiplication", "mathematics", "is_part_of"),
+        ("division", "mathematics", "is_part_of"),
+        ("percentage", "mathematics", "is_part_of"),
+        ("area", "mathematics", "is_part_of"),
+        ("perimeter", "mathematics", "is_part_of"),
+        ("pythagorean_theorem", "mathematics", "is_part_of"),
+        ("average", "mathematics", "is_part_of"),
+        ("prime_numbers", "mathematics", "is_part_of"),
+        ("square_root", "mathematics", "is_part_of"),
+        ("fractions", "mathematics", "is_part_of"),
+        ("order_of_operations", "mathematics", "is_part_of"),
+        ("negative_numbers", "mathematics", "is_part_of"),
+        ("exponents", "mathematics", "is_part_of"),
+        # Logic connections
+        ("logical_thinking", "problem_solving_steps", "uses"),
+        ("cause_and_effect", "logical_thinking", "is_part_of"),
+        ("if_then", "logical_thinking", "is_part_of"),
+        ("deduction", "logical_thinking", "is_part_of"),
+        ("problem_solving_steps", "logical_thinking", "requires"),
+        ("critical_thinking", "logical_thinking", "is_part_of"),
+        ("analogy", "logical_thinking", "is_part_of"),
+        ("pattern_recognition", "logical_thinking", "is_part_of"),
+        # Practical connections
+        ("budgeting", "mathematics", "uses"),
+        ("unit_conversion", "mathematics", "uses"),
+        ("study_tips", "logical_thinking", "applies"),
+        ("temperature_conversion", "mathematics", "uses"),
+        ("time_management", "problem_solving_steps", "applies"),
+        ("money_tips", "budgeting", "related_to"),
+        ("cooking_tips", "unit_conversion", "uses"),
     ]
 
     try:
@@ -662,6 +995,46 @@ SMALL_TALK_PATTERNS = {
     "thank you": ["thanks", "thank_you"],
     "what's up": ["whats_up", "whats_good", "you_good"],
     "whats up": ["whats_up", "whats_good", "you_good"],
+    # Problem solving & trivia triggers
+    "what is": ["logical_thinking", "problem_solving_steps"],
+    "what are": ["logical_thinking", "problem_solving_steps"],
+    "how do i": ["problem_solving_steps", "study_tips"],
+    "how to": ["problem_solving_steps", "cooking_tips"],
+    "calculate": ["mathematics", "addition", "multiplication"],
+    "compute": ["mathematics", "addition", "multiplication"],
+    "convert": ["unit_conversion", "temperature_conversion"],
+    "capital of": ["capitals", "philippines"],
+    "how many": ["human_body", "planets_count", "continents"],
+    "formula": ["pythagorean_theorem", "area", "perimeter"],
+    "percentage": ["percentage", "mathematics"],
+    "average": ["average", "mathematics"],
+    "square root": ["square_root", "mathematics"],
+    "prime": ["prime_numbers", "mathematics"],
+    "solve": ["problem_solving_steps", "mathematics"],
+    "explain": ["logical_thinking", "critical_thinking"],
+    "difference between": ["logical_thinking", "critical_thinking"],
+    "why is": ["cause_and_effect", "logical_thinking"],
+    "how does": ["cause_and_effect", "logical_thinking"],
+    "what causes": ["cause_and_effect", "logical_thinking"],
+    "planet": ["planets_count", "solar_system"],
+    "ocean": ["oceans", "earth"],
+    "continent": ["continents", "earth"],
+    "country": ["capitals", "largest_country"],
+    "temperature": ["temperature_conversion", "boiling_point", "freezing_point"],
+    "speed of light": ["speed_of_light", "physics"],
+    "dna": ["dna", "biology"],
+    "gravity": ["gravity", "physics"],
+    "photosynthesis": ["photosynthesis", "biology"],
+    "water": ["water_formula", "chemistry"],
+    "budget": ["budgeting", "money_tips"],
+    "save money": ["budgeting", "money_tips"],
+    "study": ["study_tips", "time_management"],
+    "sleep": ["sleep_tips"],
+    "password": ["password_tips"],
+    "file size": ["file_sizes"],
+    "internet": ["internet_speed"],
+    "first aid": ["first_aid"],
+    "time zone": ["time_zones"],
 }
 
 
@@ -740,20 +1113,33 @@ async def root():
     return {"status": "running", "model": MODEL_NAME, "graph": GRAPH_NAME}
 
 
+SYSTEM_PROMPT = """You are a friendly, helpful, and conversational AI assistant. 
+You give clear and concise answers. 
+You use a casual but professional tone. 
+If you don't know something, you honestly say you don't know.
+You are enthusiastic and enjoy helping people learn new things."""
+
+
 @app.post("/generate", response_model=GenerateResponse)
 async def generate(request: GenerateRequest):
     try:
         context = query_knowledge_graph(request.prompt)
 
-        # Build prompt based on whether we have context
+        # Build prompt with system prompt and context
         if context:
-            full_prompt = f"""{context}
+            full_prompt = f"""{SYSTEM_PROMPT}
 
-User question: {request.prompt}
-Please provide a helpful, friendly answer based on the information above."""
+Relevant facts from knowledge base:
+{context}
+
+User: {request.prompt}
+Assistant:"""
         else:
-            # No context found - let LLM handle it naturally
-            full_prompt = request.prompt
+            # No context found - still include system prompt
+            full_prompt = f"""{SYSTEM_PROMPT}
+
+User: {request.prompt}
+Assistant:"""
 
         ollama_response = requests.post(
             f"{OLLAMA_BASE_URL}/api/generate",
